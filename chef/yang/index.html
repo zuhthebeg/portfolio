@@ -354,7 +354,7 @@ footer .brass{color:var(--brass)}
   /* Career starts a fresh page; Expertise flows right after it (no break)
      to fill the career-tail whitespace; Gallery gets its own page */
   .career,.gallery{break-before:page}
-  .expertise{break-before:auto}
+  .expertise{break-before:auto;padding-top:30pt!important}
   .stat{break-inside:avoid}
   .exp-grid{break-inside:avoid}      /* keep the 3 capability columns together */
 
@@ -369,9 +369,12 @@ footer .brass{color:var(--brass)}
 
   /* career: keep each role intact; rows flow across pages without splitting */
   .shead{margin-bottom:12pt}
-  .tl-row{break-inside:avoid;padding:8pt 0;gap:6mm}
-  .tl-row .yr{font-size:9pt}
-  .tl-row .dot{top:12pt}
+  /* widen the year column + push the timeline rule/dot right so the date is
+     never clipped by the line (print needs fixed mm, not the live vw clamp) */
+  .tl::before{left:30mm!important}
+  .tl-row{break-inside:avoid;padding:8pt 0;gap:7mm;grid-template-columns:30mm 1fr!important}
+  .tl-row .yr{font-size:9pt;padding-right:3.5mm}
+  .tl-row .dot{top:12pt;left:30mm!important}
   .tl-row .body h3{font-size:12pt;color:var(--ink)}
   .tl-row .body .role{font-size:7.5pt;margin:.28em 0 .5em}
   .tl-row .body .pts{gap:.18em;max-width:none}
@@ -391,7 +394,7 @@ footer .brass{color:var(--brass)}
   .dish .cap .no{color:#f0e3c4}
 
   /* contact: compact CTA so it + the footer stay on the gallery page */
-  .contact{background:var(--bg)!important;page-break-inside:avoid;break-before:avoid;padding:14pt 0 8pt!important}
+  .contact{background:var(--bg)!important;page-break-inside:avoid;break-before:avoid;padding:26pt 0 8pt!important}
   .contact::before{display:none!important}
   .contact .eyebrow{margin-bottom:.6em}
   .contact h2{font-size:24pt}
