@@ -315,7 +315,12 @@ footer .brass{color:var(--brass)}
   @page{margin:14mm 12mm}
   html,body{background:#fff!important}
   body{color:var(--ink);font-size:11pt;line-height:1.6;
-    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    display:flex;flex-direction:column}
+  /* print-only section order: Expertise moves below Career to fill the
+     career-tail whitespace (live scroll order stays Profile→Expertise→Career) */
+  .hero{order:1}.profile{order:2}.career{order:3}.expertise{order:4}
+  .gallery{order:5}.contact{order:6}footer{order:7}
   body::after{display:none!important}            /* grain */
   nav,.scrollcue,.pdf-fab,.lb,.dish .corner{display:none!important}
   .reveal{opacity:1!important;transform:none!important}
@@ -344,9 +349,13 @@ footer .brass{color:var(--brass)}
   .stats{margin-top:16pt;break-inside:avoid}
   .stat .num{color:var(--brass-bright)}
 
-  /* ---- page structure: each section starts on its own page ---- */
-  .expertise,.career,.gallery{break-before:page}
+  /* ---- page structure ---- */
+  /* Career starts a fresh page; Expertise flows right after it (no break)
+     to fill the career-tail whitespace; Gallery gets its own page */
+  .career,.gallery{break-before:page}
+  .expertise{break-before:auto}
   .stat{break-inside:avoid}
+  .exp-grid{break-inside:avoid}      /* keep the 3 capability columns together */
 
   /* expertise: force 3 columns (override mobile breakpoint), fit one page */
   .exp-grid{grid-template-columns:repeat(3,1fr)!important}
