@@ -2,3 +2,6 @@
 KakaoTalk_*.jpg
 yang.txt
 .claude/
+
+# local print/test artifacts
+_print_*.pdf
