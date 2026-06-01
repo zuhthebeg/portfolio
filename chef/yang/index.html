@@ -518,10 +518,10 @@ footer .brass{color:var(--brass)}
   <div class="wrap reveal">
     <span class="eyebrow">05 — Get in touch</span>
     <h2>주방을 함께<br>이끌 <em>준비가</em> 되었습니다.</h2>
-    <a class="mail" href="mailto:yang01209@naver.com">yang01209@naver.com</a>
+    <a class="mail" id="mailPrimary" href="#"></a>
     <div class="meta">
       <span>Seoul, Korea</span>
-      <a href="mailto:yang01209@naver.com">Email</a>
+      <a id="mailSecondary" href="#">Email</a>
       <span>Head Chef · Available</span>
     </div>
   </div>
@@ -552,6 +552,17 @@ footer .brass{color:var(--brass)}
 </div>
 
 <script>
+/* email assembled at runtime so Cloudflare's edge obfuscation leaves it intact */
+(function(){
+  var user=["yang","01209"].join(""), domain=["naver","com"].join(".");
+  var addr=user+String.fromCharCode(64)+domain;
+  ["mailPrimary","mailSecondary"].forEach(function(id,i){
+    var el=document.getElementById(id);
+    if(!el)return;
+    el.href="mailto:"+addr;
+    if(i===0)el.textContent=addr;          // primary shows the address
+  });
+})();
 /* ============ DATA (템플릿화 지점: 이 배열만 교체하면 다른 셰프 포트폴리오로 재사용 가능) ============ */
 const DISHES = [
   {img:"assets/dishes/01-bisque.jpg",      en:"Blue Crab Bisque",      kr:"꽃게 비스크 · 보리지 블로썸",        span:"sp7"},
