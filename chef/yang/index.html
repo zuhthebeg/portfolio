@@ -305,15 +305,9 @@ footer .brass{color:var(--brass)}
 
 /* ================= PRINT / PDF ================= */
 @media print{
-  /* light editorial palette via variable override */
-  :root{
-    --bg:#fcf9f3;--bg-2:#f6f1e7;--bg-3:#efe8da;
-    --ink:#211c15;--ink-soft:#4d4538;--muted:#8a7e6c;
-    --brass:#9c7d40;--brass-bright:#7e6330;--brass-deep:#6a5126;
-    --line:rgba(156,125,64,.45);--line-soft:rgba(33,28,21,.16);--shadow:none;
-  }
-  @page{margin:14mm 12mm}
-  html,body{background:#fff!important}
+  /* keep the site's dark luxury palette in the PDF (no light override) */
+  @page{margin:12mm 12mm;background:#0c0b0a}
+  html,body{background:var(--bg)!important}
   body{color:var(--ink);font-size:11pt;line-height:1.6;
     -webkit-print-color-adjust:exact;print-color-adjust:exact;
     display:flex;flex-direction:column}
@@ -324,19 +318,19 @@ footer .brass{color:var(--brass)}
   body::after{display:none!important}            /* grain */
   nav,.scrollcue,.pdf-fab,.lb,.dish .corner{display:none!important}
   .reveal{opacity:1!important;transform:none!important}
-  section{padding-top:14pt!important;padding-bottom:14pt!important;background:#fff!important}
+  section{padding-top:14pt!important;padding-bottom:14pt!important;background:var(--bg)!important}
   .wrap{max-width:none;padding:0 4mm}
   .shead{margin-bottom:16pt;break-after:avoid}
   .shead h2{font-size:22pt}
   h2,h3{color:var(--ink)}
 
   /* hero → compact title block */
-  .hero{min-height:auto!important;padding:6mm 0 10mm;display:block;page-break-after:avoid}
+  .hero{min-height:auto!important;padding:6mm 0 10mm;display:block;page-break-after:avoid;background:var(--bg)!important}
   .hero-bg{display:none!important}
   .hero .hero-anim>*{opacity:1!important;animation:none!important;transform:none!important}
   .hero h1{font-size:42pt;margin:.1em 0}
   .hero h1 .ko{color:var(--ink-soft)}
-  .hero h1 .en{-webkit-text-fill-color:var(--ink)!important;color:var(--ink)!important;background:none!important}
+  .hero h1 .en{-webkit-text-fill-color:var(--brass-bright)!important;color:var(--brass-bright)!important;background:none!important}
   .hero h1 em{color:var(--brass)}
   .hero .role .ttl{color:var(--ink-soft)}
   .hero .role .rule{background:var(--brass)}
@@ -379,20 +373,26 @@ footer .brass{color:var(--brass)}
   .tl-row .body .tags{margin-top:.5em}
   .tl-row .body .tags span{font-size:8pt;padding:2px 9px}
 
-  /* gallery: clean image grid, all 7 plates on one page, effects stripped */
-  .grid{grid-template-columns:1fr 1fr!important;gap:4mm}
-  .dish{break-inside:avoid;aspect-ratio:16/9;box-shadow:none;border:1px solid var(--line-soft)}
+  /* gallery: clean image grid, all 7 plates sized down and centred so the
+     grid + the contact CTA + footer all share the final page */
+  .gallery{padding-bottom:8pt!important}
+  .grid{grid-template-columns:1fr 1fr!important;gap:3mm;max-width:128mm;margin:0 auto}
+  .dish{break-inside:avoid;aspect-ratio:16/9;box-shadow:none;border:1px solid var(--line)}
   .dish img{filter:none!important;transform:none!important}
   .dish .ph::before,.dish .ph::after{display:none!important}     /* vignette + grain */
-  .dish .cap{position:absolute;transform:none;opacity:1;background:linear-gradient(transparent,rgba(20,16,10,.55));padding:10pt}
+  .dish .cap{position:absolute;transform:none;opacity:1;background:linear-gradient(transparent,rgba(8,7,6,.7));padding:8pt}
   .dish .cap .no{color:#f0e3c4}
 
-  /* contact */
-  .contact{background:#fff!important}
+  /* contact: compact CTA so it + the footer stay on the gallery page */
+  .contact{background:var(--bg)!important;page-break-inside:avoid;break-before:avoid;padding:14pt 0 8pt!important}
   .contact::before{display:none!important}
-  .contact h2{font-size:30pt}
+  .contact .eyebrow{margin-bottom:.6em}
+  .contact h2{font-size:24pt}
   .contact h2 em,.contact .mail{color:var(--brass)}
-  footer{border-color:var(--line-soft)}
+  .contact .mail{margin-top:.5em;font-size:13pt}
+  .contact .meta{margin-top:1em}
+  /* keep the slim copyright bar on the same page as the contact CTA */
+  footer{border-color:var(--line-soft);padding:10pt 0;break-inside:avoid;break-before:avoid}
 }
 </style>
 </head>
