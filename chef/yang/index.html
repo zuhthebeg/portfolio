@@ -244,6 +244,9 @@ nav .menu-btn{display:none;background:none;border:none;color:var(--ink);font-fam
 .tl-row .body h3{font-family:var(--serif-kr);font-size:1.45rem;font-weight:500;line-height:1.2}
 .tl-row .body .role{font-family:var(--label);text-transform:uppercase;letter-spacing:.2em;font-size:.68rem;color:var(--brass);margin:.5em 0 .9em}
 .tl-row .body p{color:var(--ink-soft);font-size:.95rem;max-width:60ch}
+.tl-row .body .pts{list-style:none;max-width:62ch;display:grid;gap:.42em}
+.tl-row .body .pts li{position:relative;padding-left:18px;color:var(--ink-soft);font-size:.93rem;line-height:1.5}
+.tl-row .body .pts li::before{content:"";position:absolute;left:2px;top:.62em;width:5px;height:5px;border:1px solid var(--brass);transform:rotate(45deg)}
 .tl-row .body .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:1em}
 .tl-row .body .tags span{font-size:.78rem;color:var(--muted);border:1px solid var(--line-soft);padding:4px 11px;border-radius:40px}
 .tl-row:hover{padding-left:8px}
@@ -354,15 +357,17 @@ footer .brass{color:var(--brass)}
   .exp ul{margin-top:11pt}
   .exp li{padding:.46em 0 .46em 18px;font-size:9pt}
 
-  /* career: compact rows so all 7 entries sit on one page */
+  /* career: keep each role intact; rows flow across pages without splitting */
   .shead{margin-bottom:12pt}
-  .tl-row{break-inside:avoid;padding:5.5pt 0;gap:6mm}
+  .tl-row{break-inside:avoid;padding:8pt 0;gap:6mm}
   .tl-row .yr{font-size:9pt}
-  .tl-row .dot{top:10pt}
+  .tl-row .dot{top:12pt}
   .tl-row .body h3{font-size:12pt;color:var(--ink)}
-  .tl-row .body .role{font-size:7.5pt;margin:.28em 0 .4em}
-  .tl-row .body p{font-size:8.5pt;color:var(--ink-soft);max-width:none}
-  .tl-row .body .tags{margin-top:.42em}
+  .tl-row .body .role{font-size:7.5pt;margin:.28em 0 .5em}
+  .tl-row .body .pts{gap:.18em;max-width:none}
+  .tl-row .body .pts li{font-size:8.5pt;padding-left:13px;line-height:1.4;color:var(--ink-soft)}
+  .tl-row .body .pts li::before{top:.5em;width:3.5px;height:3.5px}
+  .tl-row .body .tags{margin-top:.5em}
   .tl-row .body .tags span{font-size:8pt;padding:2px 9px}
 
   /* gallery: clean image grid, all 7 plates on one page, effects stripped */
@@ -401,14 +406,14 @@ footer .brass{color:var(--brass)}
   <div class="hero-bg"><img src="assets/dishes/01-bisque.jpg" alt="" /></div>
   <div class="hero-inner wrap">
     <div class="hero-anim">
-      <p class="eyebrow">Head Chef &nbsp;·&nbsp; Fine Dining &nbsp;·&nbsp; Est. 2011</p>
+      <p class="eyebrow">Chef &nbsp;·&nbsp; Dining &nbsp;·&nbsp; Est. 2011</p>
       <h1>
         <span class="ko">양영일</span>
         <span class="en">Yang <em>Young-il</em></span>
       </h1>
       <div class="role">
         <span class="rule"></span>
-        <span class="ttl">Head Chef &nbsp;/&nbsp; Culinary Director</span>
+        <span class="ttl">Chef &nbsp;/&nbsp; Culinary Director</span>
       </div>
     </div>
   </div>
@@ -530,7 +535,7 @@ footer .brass{color:var(--brass)}
 <footer>
   <div class="wrap">
     <span>© 2026 <span class="brass">양영일</span> · Yang Young-il</span>
-    <span>Head Chef Portfolio</span>
+    <span>Chef Portfolio</span>
   </div>
 </footer>
 
@@ -576,25 +581,64 @@ const DISHES = [
 
 const CAREER = [
   {yr:"2025.01 — 2026.05", venue:"이도청담", role:"Sous Chef · Head Chef Acting",
-   desc:"Head Chef 공석 약 6개월간 주방 운영 전반을 총괄. 시즌 메뉴 리뉴얼, A la Carte 레시피 표준화, 크리스마스 한정 코스 개발과 원가·식자재 관리를 담당.",
+   points:[
+     "Head Chef 공석 약 6개월간 주방 운영 전반 총괄",
+     "BOH 운영 총괄 및 직원 섹션별 교육·업무 체계 구축",
+     "시즌별 메뉴 리뉴얼 진행 및 시즌 메뉴 기획",
+     "A la Carte 레시피 표준화 · 간소화",
+     "크리스마스 한정 코스 메뉴 개발",
+     "원가 · 식자재 사용량 관리 및 지출결의 등 관리업무",
+   ],
    tags:["BOH 총괄","메뉴 리뉴얼","원가 관리","직원 교육"]},
   {yr:"2024.09 — 2024.12", venue:"더펄바이그릴도하", role:"Head Chef",
-   desc:"직원 포지션 재정비로 업무 효율 개선. 파스타·사이드 품질 향상, 그릴·후무스 파트 교육, 파트별 로테이션 시스템 구축, 크리스마스 코스 개발.",
+   points:[
+     "직원 포지션 재정비로 업무 효율 개선",
+     "파스타 · 사이드메뉴 품질 향상",
+     "그릴 · 후무스 파트 교육 진행",
+     "파트별 로테이션 시스템 구축",
+     "크리스마스 코스 메뉴 개발",
+   ],
    tags:["조직 재정비","로테이션 시스템","코스 개발"]},
   {yr:"2020.08 — 2024.08", venue:"문득", role:"Head Chef",
-   desc:"매출 250% 이상 성장과 2호점 오픈에 기여. 크러스트 돈마호크 스테이크·꽃게 리조또 등 TV 방영 시그니처 메뉴 개발, 하이볼·베버리지 메뉴로 객단가 상승을 이끔.",
+   points:[
+     "크러스트 돈마호크 스테이크 개발 — SBS 생방송투데이 3291회 소개",
+     "꽃게 리조또 등 한식 접목 퓨전 메뉴 개발 — 당신의 일상을 밝히는가 81회 소개, 현재 시그니처 메뉴로 운영",
+     "매출 250% 이상 성장 및 2호점 오픈 기여",
+     "하이볼 · 베버리지 메뉴 개발로 객단가 상승 · 매출 증대",
+     "직원 교육 및 조직 운영",
+   ],
    tags:["매출 250%↑","2호점 오픈","TV 시그니처","베버리지 개발"]},
   {yr:"2019.01 — 2020.08", venue:"베리뜨", role:"Head Chef",
-   desc:"고객층 분석을 통한 샐러드바 개선으로 중장년층 고객 유입 확대. 파스타 레시피·조리 시스템 개선, 허브·스탁 활용 메뉴 정비.",
+   points:[
+     "고객층 분석을 통한 샐러드바 개선",
+     "중장년층 고객 유입 확대",
+     "파스타 레시피 및 조리 시스템 개선",
+     "허브 및 스탁 활용 메뉴 정비",
+   ],
    tags:["메뉴 개선","고객층 확대"]},
   {yr:"2017.03 — 2018.11", venue:"로쏘", role:"Owner Chef",
-   desc:"매장 운영 총괄. 메뉴 개발부터 고객 관리, 원가 관리까지 오너 셰프로서 매장 전반을 책임짐.",
+   points:[
+     "오너 셰프로서 매장 운영 총괄",
+     "메뉴 개발",
+     "고객 관리",
+     "원가 관리",
+   ],
    tags:["오너 셰프","매장 운영"]},
   {yr:"2015.11 — 2017.11", venue:"엘리스타워 & 일마고", role:"CDP",
-   desc:"복날 한정 삼계오일파스타 개발로 시즌 프로모션 매출 향상. 식전빵 스프레드 치즈 개발 및 테이크아웃 판매 증대.",
+   points:[
+     "복날 한정 삼계오일파스타 개발",
+     "시즌 프로모션 매출 향상",
+     "식전빵 스프레드 치즈 개발",
+     "테이크아웃 판매 증대",
+   ],
    tags:["시즌 프로모션","신메뉴 개발"]},
   {yr:"2013.05 — 2015.10", venue:"더테이블 & 세컨드테이블", role:"Commis",
-   desc:"콜드파트 운영과 식자재 신선도 관리. 프렙·백업 시스템 수행 및 메뉴 개발 참여로 파인다이닝 기본기를 다짐.",
+   points:[
+     "콜드파트 운영",
+     "식자재 신선도 관리",
+     "프렙 및 백업 시스템 수행",
+     "메뉴 개발 참여",
+   ],
    tags:["콜드파트","프렙·백업"]},
 ];
 
@@ -626,7 +670,7 @@ CAREER.forEach(c=>{
     <div class="body">
       <h3>${c.venue}</h3>
       <div class="role">${c.role}</div>
-      <p>${c.desc}</p>
+      <ul class="pts">${c.points.map(p=>`<li>${p}</li>`).join('')}</ul>
       <div class="tags">${c.tags.map(t=>`<span>${t}</span>`).join('')}</div>
     </div>`;
   tl.appendChild(row);
