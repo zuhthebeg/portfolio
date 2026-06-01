@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>양영일 · Head Chef Portfolio</title>
-<meta name="description" content="Head Chef 양영일 — 15년 경력의 파인다이닝 셰프. 메뉴 개발, 주방 운영, 시그니처 다이닝." />
+<title>양영일 · Chef Portfolio</title>
+<meta name="description" content="양영일 — 15년 경력의 다이닝 셰프. 메뉴 개발, 주방 운영, 시그니처 다이닝." />
 <link rel="canonical" href="https://cocy.io/portfolio/chef/yang" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://cocy.io/portfolio/chef/yang" />
-<meta property="og:title" content="양영일 · Head Chef Portfolio" />
-<meta property="og:description" content="Head Chef 양영일 — 15년 경력의 파인다이닝 셰프. 메뉴 개발, 주방 운영, 시그니처 다이닝." />
+<meta property="og:title" content="양영일 · Chef Portfolio" />
+<meta property="og:description" content="양영일 — 15년 경력의 다이닝 셰프. 메뉴 개발, 주방 운영, 시그니처 다이닝." />
 <meta property="og:image" content="https://cocy.io/portfolio/chef/yang/assets/dishes/01-bisque.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -305,8 +305,15 @@ footer .brass{color:var(--brass)}
 
 /* ================= PRINT / PDF ================= */
 @media print{
-  /* keep the site's dark luxury palette in the PDF (no light override) */
-  @page{margin:12mm 12mm;background:#0c0b0a}
+  /* light/white print palette — flips the whole var-driven theme to a clean
+     paper look so the PDF prints well on a normal printer */
+  :root{
+    --bg:#ffffff; --bg-2:#faf7f1; --bg-3:#f2ece0;
+    --ink:#1b1813; --ink-soft:#484136; --muted:#7c7464;
+    --brass:#9a7b3e; --brass-bright:#a8852f; --brass-deep:#7d6533;
+    --line:rgba(40,30,15,.22); --line-soft:rgba(0,0,0,.10);
+  }
+  @page{margin:12mm 12mm;background:#ffffff}
   html,body{background:var(--bg)!important}
   body{color:var(--ink);font-size:11pt;line-height:1.6;
     -webkit-print-color-adjust:exact;print-color-adjust:exact;
